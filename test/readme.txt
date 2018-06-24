@@ -5,4 +5,8 @@ Git i hate you.
 <<<<<<< HEAD
 =======
 Git dev branch.
+<<<<<<< HEAD
+>>>>>>> dev
+=======
+Git another.
 >>>>>>> dev
