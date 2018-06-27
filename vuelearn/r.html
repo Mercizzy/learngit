@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>vue绑定</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+    	<p :title="message">hello</p>
+
+    </div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+    	var vm = new Vue({
+    		el:'#app',
+    		data:{
+    			message:'你好，现在是'+new Date().toLocaleString()
+    		}
+
+    	})
+
+    </script>
+</body>
+</html>
