@@ -10,7 +10,8 @@
 </head>
 <body>
     <div id="app">
-    	<p :title="message">hello</p>
+    	<p :title="message" id="b">hello</p>
+    	<p id="a"></p>
 
     </div>
 
@@ -23,6 +24,8 @@
     		}
 
     	})
+
+    	a.innerHTML = b.title;
 
     </script>
 </body>
