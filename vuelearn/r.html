@@ -10,83 +10,48 @@
 </head>
 <body>
     <div id="app">
-    	<!-- <p id="t"></p> -->
-    	<!-- <p :title="message" id="b">hello</p>
-        <p :id="a?'d':'e'" @click="clicke($event)">111</p>
-        <p :class="{active:isactive}">222</p>
-                <div :class="{active:isactive}">333</div> -->
-    	<!-- <ul>
-    		<li v-for="url in urls"><a :href="url">{{url}}</a></li>
-    	</ul> -->
-		<!-- <p>{{now}}</p> -->
-		<vueh v-for="title in titles" :ad="title"></vueh>
-		
-		<!-- <ul>
-            <li v-for="(task,index) in tasks">
-                {{index}}.{{task}}
-            </li>
-        </ul> -->
-    </div>
+    	<vue-olt>
+    		<template slot="s1">
+    			{{message}}
+    		</template>
+    		<template slot="s2">
+    			hello2
+    		</template>
+    		
+    	</vue-olt>
 
+    </div>
     <template id="ss">
-		<div>
-            <h1 @click="addC">{{ad}}</h1>
-            <p>{{count}}</p>      
-        </div>
-	</template>
+    	<div>
+    		<p>
+    			<slot name="s1"><slot/>
+    		</p>
+    		<p>
+    			<slot name="s2"><slot/>
+    		</p>
+    		<p>
+    			<slot name="s3">haha<slot/>
+    		</p>
+    		
+    	</div>
+    	
+    </template>
 
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
     <script>
-    	/*setInterval(function () {
-    		t.innerHTML =  new Date().toLocaleString();
-    	},1000)*/
-    	Vue.component('vueh',{
-    		template: '#ss',
-            props: ['ad'],
-            data: function () {
-                return {
-                    count: 0
-                }
-            },
-            methods: {
-                addC: function () {
-                    this.count++;
-                }
-            }
-    	})
+    	Vue.component('vue-olt',{
+    		template: '#ss'
+    		
+    	});
+
     	var vm = new Vue({
     		el: '#app',
     		data: {
-    			message:'你好，现在是'+new Date().toLocaleString(),
-    			a:false,
-    			c:true,
-    			isactive: true,
-    			tasks: [
-    				'pear','apple','banana'
-    			],
-                titles: ['new','old','old-new']
-    		},
-    		computed: {
-    			now: function () {
-    				return new Date().toLocaleString();
-    			}
-    		},
-    		methods: {
-    			clicke: function (event) {
-    				console.log(1)
-    				alert(event.target.tagName)
-    			}
+    			message: 'sava1'
     		}
-
-    	});
-
-    	
+    	})
 
     </script>
-    <style>
-    	.active{
-    		color:#f60;
-    	}
-    </style>
+    
 </body>
 </html>
