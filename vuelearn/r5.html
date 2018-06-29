@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+    	<button @click="change()">Toggle</button>
+    	<transition name="fade">
+    		<p v-if="show">hello</p>
+    		
+    	</transition>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+    <script type="text/javascript">
+    	var vm = new Vue({
+    		el: '#app',
+    		data: {
+    			show: true
+    		},
+    		methods: {
+    			change: function () {
+    				this.show = ! this.show;
+    			}
+    		}
+    	})
+
+    </script>
+
+    <style type="text/css">
+    	.fade-enter-active,.fade-leave-active {
+    		transition: all 1s;
+    	}
+    	.fade-enter, .fade-leave-to {
+    		opacity: 0;
+    		transform: translateX(40px);
+
+    	}
+    </style>
+</body>
+</html>
