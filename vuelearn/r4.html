@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+    	<todo-list :todos="todos">
+    		<template slot-scope="tt">
+    			<span v-if="tt.todo.isfinished">√</span>
+    			{{tt.todo.text}}
+    		</template>
+    	</todo-list>
+    </div>
+
+    <template id="slot-todo">
+    	<ul>
+    		<li 
+    			v-for="todo in todos"
+    			@click="change(todo)"
+    			>
+    			<slot :todo="todo">
+    			</slot>
+    		</li>
+    	</ul>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+    <script type="text/javascript">
+    	Vue.component('todo-list', {
+			template: '#slot-todo',
+			data: function () {
+				return {
+					todos: [
+						{ text:'play games', isfinished:true },
+						{ text:'go home', isfinished:false },
+						{ text:'do homework', isfinished:true },
+						{ text:'go to school', isfinished:false }
+					]
+				}
+			},
+			methods: {
+				change: function (todo) {
+					todo.isfinished = !todo.isfinished;
+				}
+			}
+		})
+
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				lovingVue: ''
+			}
+		})
+
+    </script>
+</body>
+</html>
