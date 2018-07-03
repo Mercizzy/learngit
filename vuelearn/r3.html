@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+    	<button
+			v-for="tab in tabs"
+			:class="['tab-button',{active: selectTab===tab}]"
+			@click="selectTab=tab"
+    		>
+    		{{tab}}
+    	</button>
+
+    	<keep-alive>
+    		<div :is="componentName"></div>
+    	</keep-alive>
+    </div>
+	
+	<template id="news-tab">
+		<div class="news-div">
+			<ul class="news-ul">
+				<li 
+					v-for="item in news"
+					:class="{active: selectNew===item}"
+					@click="selectNew=item"
+					>
+					<p>{{item.title}}</p>
+				</li>
+			</ul>
+			<div class="news-content">
+				<div
+					v-if="selectNew"
+					>
+					<h3>{{selectNew.title}}</h3>
+					<div>{{selectNew.content}}</div>
+				</div>
+				<p v-else>welcome!!!</p>
+			</div>
+		</div>
+	</template>
+
+	<template id="bro-tab">
+		<div>{{message}}</div>
+	</template>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+
+    <script>
+    	Vue.component('tab-news',{
+    		template: '#news-tab',
+    		data: function () {
+    			return {
+    				news: [
+						{ title: 'firstnews',content: 'fffff'},
+						{ title: 'secondnews',content: 'sssss'},
+						{ title: 'thirdnews',content: 'ttttt'}
+					],
+					selectNew: ''
+    			}
+    		}
+    	})
+
+    	Vue.component('tab-broadcast',{
+    		template: '#bro-tab',
+    		data: function () {
+    			return {
+    				message: 'my broadcast'
+    			}
+    		}
+    	})
+
+    	var vm = new Vue({
+    		el: '#app',
+    		data: {
+    			tabs: ['news','broadcast'],
+    			selectTab: 'news'
+    		},
+    		computed: {
+    			componentName: function () {
+    				return componentName = 'tab-' + this.selectTab
+    			}
+    		}
+    	})
+    </script>
+
+    <style>
+    	ul,li{
+    		list-style: none;
+    		margin:0px;
+    		padding:0px;
+    	}
+    	.tab-button{
+    		padding: 6px 10px;
+			border-top-left-radius: 3px;
+			border-top-right-radius: 3px;
+			border: 1px solid #ccc;
+			cursor: pointer;
+			background: #f0f0f0;
+			margin-bottom: -1px;
+			margin-right: -1px;
+			outline: none;
+    	}
+    	.tab-button:hover{
+    		background: #999;
+    	}
+    	.tab-button.active{
+    		border:1px solid red;
+    	}
+    	.news-div{
+    		display: flex;
+    		padding:10px 5px;
+    		border:1px solid #ccc;
+    	}
+    	.news-ul{
+    		padding-right:20px;
+    		border-right:1px solid #666;
+    	}
+    	li{
+    		cursor:pointer;
+    	}
+    	li:hover{
+    		background-color: #eee;
+    	}
+    	li.active{
+    		background-color: #eee;
+    	}
+    </style>
+</body>
+</html>
